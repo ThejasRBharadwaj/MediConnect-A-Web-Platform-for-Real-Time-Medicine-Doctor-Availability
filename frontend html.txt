@@ -1,0 +1,1802 @@
+<!-- 
+============================================
+FILE STRUCTURE:
+============================================
+frontend/
+├── index.html (Landing page)
+├── user-login.html
+├── user-register.html
+├── user-dashboard.html
+├── hospital-login.html
+├── hospital-register.html
+├── hospital-dashboard.html
+├── pharmacy-login.html
+├── pharmacy-register.html
+├── pharmacy-dashboard.html
+├── css/
+│   └── style.css
+└── js/
+    ├── config.js
+    ├── auth.js
+    ├── user.js
+    ├── hospital.js
+    └── pharmacy.js
+-->
+
+<!-- ============================================
+1. index.html - Landing Page
+============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediConnect - Healthcare Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-heartbeat"></i> MediConnect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center py-5 bg-light">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Welcome to MediConnect</h1>
+            <p class="lead mb-5">Find doctors and medicines near you in real-time</p>
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-user fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">Users / Patients</h5>
+                            <p class="card-text">Search for doctors and medicines</p>
+                            <a href="user-login.html" class="btn btn-primary">Login</a>
+                            <a href="user-register.html" class="btn btn-outline-primary">Register</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-hospital fa-3x text-success mb-3"></i>
+                            <h5 class="card-title">Hospitals</h5>
+                            <p class="card-text">Manage your doctors and schedules</p>
+                            <a href="hospital-login.html" class="btn btn-success">Login</a>
+                            <a href="hospital-register.html" class="btn btn-outline-success">Register</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-pills fa-3x text-danger mb-3"></i>
+                            <h5 class="card-title">Pharmacies</h5>
+                            <p class="card-text">Update medicine inventory</p>
+                            <a href="pharmacy-login.html" class="btn btn-danger">Login</a>
+                            <a href="pharmacy-register.html" class="btn btn-outline-danger">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose MediConnect?</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                        <i class="fas fa-search fa-3x text-primary mb-3"></i>
+                        <h4>Real-Time Search</h4>
+                        <p>Find available doctors and medicines instantly</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                        <i class="fas fa-map-marker-alt fa-3x text-success mb-3"></i>
+                        <h4>Location-Based</h4>
+                        <p>Search by your city and area</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="text-center">
+                        <i class="fas fa-clock fa-3x text-danger mb-3"></i>
+                        <h4>24/7 Access</h4>
+                        <p>Access healthcare information anytime</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p class="mb-0">&copy; 2024 MediConnect. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+<!-- ============================================
+2. user-login.html
+============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login - MediConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-heartbeat"></i> MediConnect
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <h3 class="text-center mb-4"><i class="fas fa-user"></i> User Login</h3>
+                        <div id="alert-container"></div>
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Don't have an account? <a href="user-register.html">Register here</a></p>
+                            <a href="index.html">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch(`${API_URL}/hospitals/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    localStorage.setItem('token', data.data.token);
+                    localStorage.setItem('userType', 'hospital');
+                    localStorage.setItem('userName', data.data.hospital.hospital_name);
+                    showAlert('Login successful! Redirecting...', 'success');
+                    setTimeout(() => window.location.href = 'hospital-dashboard.html', 1500);
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Login failed. Please try again.', 'danger');
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- ============================================
+9. pharmacy-register.html
+============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Registration - MediConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-heartbeat"></i> MediConnect
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center mt-5 mb-5">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <h3 class="text-center mb-4"><i class="fas fa-pills"></i> Pharmacy Registration</h3>
+                        <div id="alert-container"></div>
+                        <form id="registerForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="pharmacy_name" class="form-label">Pharmacy Name *</label>
+                                    <input type="text" class="form-control" id="pharmacy_name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="password" class="form-label">Password *</label>
+                                    <input type="password" class="form-control" id="password" required minlength="6">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Phone *</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="address" class="form-label">Address *</label>
+                                    <textarea class="form-control" id="address" rows="2" required></textarea>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="city" class="form-label">City *</label>
+                                    <input type="text" class="form-control" id="city" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="state" class="form-label">State *</label>
+                                    <input type="text" class="form-control" id="state" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="pincode" class="form-label">Pincode *</label>
+                                    <input type="text" class="form-control" id="pincode" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="license_number" class="form-label">License Number</label>
+                                    <input type="text" class="form-control" id="license_number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="operating_hours" class="form-label">Operating Hours</label>
+                                    <input type="text" class="form-control" id="operating_hours" placeholder="e.g., 9:00 AM - 9:00 PM">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-danger w-100">
+                                <i class="fas fa-pills"></i> Register Pharmacy
+                            </button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Already have an account? <a href="pharmacy-login.html">Login here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                pharmacy_name: document.getElementById('pharmacy_name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                pincode: document.getElementById('pincode').value,
+                license_number: document.getElementById('license_number').value,
+                operating_hours: document.getElementById('operating_hours').value
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/pharmacies/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Registration successful! Redirecting to login...', 'success');
+                    setTimeout(() => window.location.href = 'pharmacy-login.html', 2000);
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Registration failed. Please try again.', 'danger');
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- ============================================
+10. pharmacy-dashboard.html
+============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Dashboard - MediConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="container">
+            <a class="navbar-brand" href="pharmacy-dashboard.html">
+                <i class="fas fa-heartbeat"></i> MediConnect
+            </a>
+            <div class="ms-auto">
+                <span class="text-white me-3" id="userName"></span>
+                <button class="btn btn-outline-light btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Pharmacy Dashboard - Manage Medicines</h2>
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#addMedicineModal">
+                <i class="fas fa-plus"></i> Add Medicine
+            </button>
+        </div>
+
+        <div id="alert-container"></div>
+        <div id="medicinesList"></div>
+    </div>
+
+    <!-- Add Medicine Modal -->
+    <div class="modal fade" id="addMedicineModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Medicine</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addMedicineForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="medicine_name" class="form-label">Medicine Name *</label>
+                                <input type="text" class="form-control" id="medicine_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="generic_name" class="form-label">Generic Name</label>
+                                <input type="text" class="form-control" id="generic_name">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="manufacturer" class="form-label">Manufacturer</label>
+                                <input type="text" class="form-control" id="manufacturer">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <input type="text" class="form-control" id="category" placeholder="e.g., Antibiotics, Pain Relief">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="dosage_form" class="form-label">Dosage Form</label>
+                                <input type="text" class="form-control" id="dosage_form" placeholder="e.g., Tablet, Syrup">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="strength" class="form-label">Strength</label>
+                                <input type="text" class="form-control" id="strength" placeholder="e.g., 500mg, 10ml">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="price" class="form-label">Price *</label>
+                                <input type="number" class="form-control" id="price" step="0.01" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="stock_quantity" class="form-label">Stock Quantity *</label>
+                                <input type="number" class="form-control" id="stock_quantity" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="expiry_date" class="form-label">Expiry Date</label>
+                                <input type="date" class="form-control" id="expiry_date">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="requires_prescription" class="form-label">Requires Prescription</label>
+                                <select class="form-select" id="requires_prescription">
+                                    <option value="false">No</option>
+                                    <option value="true">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger w-100">Add Medicine</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Medicine Modal -->
+    <div class="modal fade" id="editMedicineModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Medicine</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editMedicineForm">
+                        <input type="hidden" id="edit_medicine_id">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_medicine_name" class="form-label">Medicine Name *</label>
+                                <input type="text" class="form-control" id="edit_medicine_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_generic_name" class="form-label">Generic Name</label>
+                                <input type="text" class="form-control" id="edit_generic_name">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_manufacturer" class="form-label">Manufacturer</label>
+                                <input type="text" class="form-control" id="edit_manufacturer">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_category" class="form-label">Category</label>
+                                <input type="text" class="form-control" id="edit_category">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_dosage_form" class="form-label">Dosage Form</label>
+                                <input type="text" class="form-control" id="edit_dosage_form">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_strength" class="form-label">Strength</label>
+                                <input type="text" class="form-control" id="edit_strength">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_price" class="form-label">Price *</label>
+                                <input type="number" class="form-control" id="edit_price" step="0.01" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_stock_quantity" class="form-label">Stock Quantity *</label>
+                                <input type="number" class="form-control" id="edit_stock_quantity" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_expiry_date" class="form-label">Expiry Date</label>
+                                <input type="date" class="form-control" id="edit_expiry_date">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_requires_prescription" class="form-label">Requires Prescription</label>
+                                <select class="form-select" id="edit_requires_prescription">
+                                    <option value="false">No</option>
+                                    <option value="true">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="edit_is_available" class="form-label">Availability Status</label>
+                                <select class="form-select" id="edit_is_available">
+                                    <option value="true">Available</option>
+                                    <option value="false">Not Available</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="edit_description" class="form-label">Description</label>
+                                <textarea class="form-control" id="edit_description" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger w-100">Update Medicine</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/pharmacy.js"></script>
+    <script>
+        checkAuth('pharmacy');
+        document.getElementById('userName').textContent = localStorage.getItem('userName') || 'Pharmacy';
+
+        // Load medicines on page load
+        loadMedicines();
+
+        // Add Medicine
+        document.getElementById('addMedicineForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                medicine_name: document.getElementById('medicine_name').value,
+                generic_name: document.getElementById('generic_name').value,
+                manufacturer: document.getElementById('manufacturer').value,
+                category: document.getElementById('category').value,
+                dosage_form: document.getElementById('dosage_form').value,
+                strength: document.getElementById('strength').value,
+                price: document.getElementById('price').value,
+                stock_quantity: document.getElementById('stock_quantity').value,
+                expiry_date: document.getElementById('expiry_date').value,
+                requires_prescription: document.getElementById('requires_prescription').value === 'true',
+                description: document.getElementById('description').value
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/pharmacies/medicines`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Medicine added successfully!', 'success');
+                    document.getElementById('addMedicineForm').reset();
+                    bootstrap.Modal.getInstance(document.getElementById('addMedicineModal')).hide();
+                    loadMedicines();
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Failed to add medicine', 'danger');
+            }
+        });
+
+        // Load Medicines
+        async function loadMedicines() {
+            try {
+                const response = await fetch(`${API_URL}/pharmacies/medicines`, {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    displayMedicines(data.data);
+                }
+            } catch (error) {
+                showAlert('Failed to load medicines', 'danger');
+            }
+        }
+
+        function displayMedicines(medicines) {
+            if (medicines.length === 0) {
+                document.getElementById('medicinesList').innerHTML = '<div class="alert alert-info">No medicines added yet. Click "Add Medicine" to get started.</div>';
+                return;
+            }
+
+            let html = '<div class="table-responsive"><table class="table table-striped table-hover"><thead><tr><th>Name</th><th>Category</th><th>Form</th><th>Strength</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+            
+            medicines.forEach(medicine => {
+                html += `
+                    <tr>
+                        <td><strong>${medicine.medicine_name}</strong><br><small class="text-muted">${medicine.generic_name || 'N/A'}</small></td>
+                        <td>${medicine.category || 'N/A'}</td>
+                        <td>${medicine.dosage_form || 'N/A'}</td>
+                        <td>${medicine.strength || 'N/A'}</td>
+                        <td>₹${medicine.price}</td>
+                        <td>${medicine.stock_quantity}</td>
+                        <td>
+                            ${medicine.is_available ? '<span class="badge bg-success">Available</span>' : '<span class="badge bg-secondary">Not Available</span>'}
+                            ${medicine.requires_prescription ? '<br><span class="badge bg-warning mt-1">Rx Required</span>' : ''}
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-primary" onclick="editMedicine(${medicine.medicine_id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteMedicine(${medicine.medicine_id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            html += '</tbody></table></div>';
+            document.getElementById('medicinesList').innerHTML = html;
+        }
+
+        // Edit Medicine
+        async function editMedicine(medicineId) {
+            try {
+                const response = await fetch(`${API_URL}/pharmacies/medicines`, {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+
+                const data = await response.json();
+                const medicine = data.data.find(m => m.medicine_id === medicineId);
+
+                if (medicine) {
+                    document.getElementById('edit_medicine_id').value = medicine.medicine_id;
+                    document.getElementById('edit_medicine_name').value = medicine.medicine_name;
+                    document.getElementById('edit_generic_name').value = medicine.generic_name || '';
+                    document.getElementById('edit_manufacturer').value = medicine.manufacturer || '';
+                    document.getElementById('edit_category').value = medicine.category || '';
+                    document.getElementById('edit_dosage_form').value = medicine.dosage_form || '';
+                    document.getElementById('edit_strength').value = medicine.strength || '';
+                    document.getElementById('edit_price').value = medicine.price;
+                    document.getElementById('edit_stock_quantity').value = medicine.stock_quantity;
+                    document.getElementById('edit_expiry_date').value = medicine.expiry_date || '';
+                    document.getElementById('edit_requires_prescription').value = medicine.requires_prescription.toString();
+                    document.getElementById('edit_is_available').value = medicine.is_available.toString();
+                    document.getElementById('edit_description').value = medicine.description || '';
+
+                    new bootstrap.Modal(document.getElementById('editMedicineModal')).show();
+                }
+            } catch (error) {
+                showAlert('Failed to load medicine details', 'danger');
+            }
+        }
+
+        // Update Medicine
+        document.getElementById('editMedicineForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const medicineId = document.getElementById('edit_medicine_id').value;
+            const formData = {
+                medicine_name: document.getElementById('edit_medicine_name').value,
+                generic_name: document.getElementById('edit_generic_name').value,
+                manufacturer: document.getElementById('edit_manufacturer').value,
+                category: document.getElementById('edit_category').value,
+                dosage_form: document.getElementById('edit_dosage_form').value,
+                strength: document.getElementById('edit_strength').value,
+                price: document.getElementById('edit_price').value,
+                stock_quantity: document.getElementById('edit_stock_quantity').value,
+                expiry_date: document.getElementById('edit_expiry_date').value,
+                requires_prescription: document.getElementById('edit_requires_prescription').value === 'true',
+                is_available: document.getElementById('edit_is_available').value === 'true',
+                description: document.getElementById('edit_description').value
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/pharmacies/medicines/${medicineId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Medicine updated successfully!', 'success');
+                    bootstrap.Modal.getInstance(document.getElementById('editMedicineModal')).hide();
+                    loadMedicines();
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Failed to update medicine', 'danger');
+            }
+        });
+
+        // Delete Medicine
+        async function deleteMedicine(medicineId) {
+            if (!confirm('Are you sure you want to delete this medicine?')) return;
+
+            try {
+                const response = await fetch(`${API_URL}/pharmacies/medicines/${medicineId}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Medicine deleted successfully!', 'success');
+                    loadMedicines();
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Failed to delete medicine', 'danger');
+            }
+        }
+    </script>
+</body>
+</html>Alert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Login failed. Please try again.', 'danger');
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- ============================================
+6. hospital-register.html
+============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Registration - MediConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-heartbeat"></i> MediConnect
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center mt-5 mb-5">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <h3 class="text-center mb-4"><i class="fas fa-hospital"></i> Hospital Registration</h3>
+                        <div id="alert-container"></div>
+                        <form id="registerForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="hospital_name" class="form-label">Hospital Name *</label>
+                                    <input type="text" class="form-control" id="hospital_name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="password" class="form-label">Password *</label>
+                                    <input type="password" class="form-control" id="password" required minlength="6">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Phone *</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="address" class="form-label">Address *</label>
+                                    <textarea class="form-control" id="address" rows="2" required></textarea>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="city" class="form-label">City *</label>
+                                    <input type="text" class="form-control" id="city" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="state" class="form-label">State *</label>
+                                    <input type="text" class="form-control" id="state" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="pincode" class="form-label">Pincode *</label>
+                                    <input type="text" class="form-control" id="pincode" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="registration_number" class="form-label">Registration Number</label>
+                                    <input type="text" class="form-control" id="registration_number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="hospital_type" class="form-label">Hospital Type</label>
+                                    <select class="form-select" id="hospital_type">
+                                        <option value="">Select Type</option>
+                                        <option value="Government">Government</option>
+                                        <option value="Private">Private</option>
+                                        <option value="Multi-specialty">Multi-specialty</option>
+                                        <option value="Clinic">Clinic</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="fas fa-hospital"></i> Register Hospital
+                            </button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Already have an account? <a href="hospital-login.html">Login here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                hospital_name: document.getElementById('hospital_name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                pincode: document.getElementById('pincode').value,
+                registration_number: document.getElementById('registration_number').value,
+                hospital_type: document.getElementById('hospital_type').value
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/hospitals/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Registration successful! Redirecting to login...', 'success');
+                    setTimeout(() => window.location.href = 'hospital-login.html', 2000);
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Registration failed. Please try again.', 'danger');
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- ============================================
+7. hospital-dashboard.html
+============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Dashboard - MediConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="hospital-dashboard.html">
+                <i class="fas fa-heartbeat"></i> MediConnect
+            </a>
+            <div class="ms-auto">
+                <span class="text-white me-3" id="userName"></span>
+                <button class="btn btn-outline-light btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Hospital Dashboard - Manage Doctors</h2>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addDoctorModal">
+                <i class="fas fa-plus"></i> Add Doctor
+            </button>
+        </div>
+
+        <div id="alert-container"></div>
+        <div id="doctorsList"></div>
+    </div>
+
+    <!-- Add Doctor Modal -->
+    <div class="modal fade" id="addDoctorModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Doctor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addDoctorForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="full_name" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="full_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="specialization" class="form-label">Specialization *</label>
+                                <input type="text" class="form-control" id="specialization" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="qualification" class="form-label">Qualification</label>
+                                <input type="text" class="form-control" id="qualification">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="experience_years" class="form-label">Experience (Years)</label>
+                                <input type="number" class="form-control" id="experience_years">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="consultation_fee" class="form-label">Consultation Fee</label>
+                                <input type="number" class="form-control" id="consultation_fee" step="0.01">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="room_number" class="form-label">Room Number</label>
+                                <input type="text" class="form-control" id="room_number">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="available_days" class="form-label">Available Days (comma-separated)</label>
+                                <input type="text" class="form-control" id="available_days" placeholder="Mon,Tue,Wed,Thu,Fri">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="available_time_from" class="form-label">Available From</label>
+                                <input type="time" class="form-control" id="available_time_from">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="available_time_to" class="form-label">Available To</label>
+                                <input type="time" class="form-control" id="available_time_to">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Add Doctor</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Doctor Modal -->
+    <div class="modal fade" id="editDoctorModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Doctor</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editDoctorForm">
+                        <input type="hidden" id="edit_doctor_id">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_full_name" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="edit_full_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_specialization" class="form-label">Specialization *</label>
+                                <input type="text" class="form-control" id="edit_specialization" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_qualification" class="form-label">Qualification</label>
+                                <input type="text" class="form-control" id="edit_qualification">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_experience_years" class="form-label">Experience (Years)</label>
+                                <input type="number" class="form-control" id="edit_experience_years">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_phone" class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="edit_phone">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="edit_email">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_consultation_fee" class="form-label">Consultation Fee</label>
+                                <input type="number" class="form-control" id="edit_consultation_fee" step="0.01">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_room_number" class="form-label">Room Number</label>
+                                <input type="text" class="form-control" id="edit_room_number">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="edit_available_days" class="form-label">Available Days</label>
+                                <input type="text" class="form-control" id="edit_available_days">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_available_time_from" class="form-label">Available From</label>
+                                <input type="time" class="form-control" id="edit_available_time_from">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="edit_available_time_to" class="form-label">Available To</label>
+                                <input type="time" class="form-control" id="edit_available_time_to">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Availability Status</label>
+                                <select class="form-select" id="edit_is_available">
+                                    <option value="true">Available</option>
+                                    <option value="false">Not Available</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Update Doctor</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/hospital.js"></script>
+    <script>
+        checkAuth('hospital');
+        document.getElementById('userName').textContent = localStorage.getItem('userName') || 'Hospital';
+
+        // Load doctors on page load
+        loadDoctors();
+
+        // Add Doctor
+        document.getElementById('addDoctorForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                full_name: document.getElementById('full_name').value,
+                specialization: document.getElementById('specialization').value,
+                qualification: document.getElementById('qualification').value,
+                experience_years: document.getElementById('experience_years').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                consultation_fee: document.getElementById('consultation_fee').value,
+                available_days: document.getElementById('available_days').value,
+                available_time_from: document.getElementById('available_time_from').value,
+                available_time_to: document.getElementById('available_time_to').value,
+                room_number: document.getElementById('room_number').value
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/hospitals/doctors`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Doctor added successfully!', 'success');
+                    document.getElementById('addDoctorForm').reset();
+                    bootstrap.Modal.getInstance(document.getElementById('addDoctorModal')).hide();
+                    loadDoctors();
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Failed to add doctor', 'danger');
+            }
+        });
+
+        // Load Doctors
+        async function loadDoctors() {
+            try {
+                const response = await fetch(`${API_URL}/hospitals/doctors`, {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    displayDoctors(data.data);
+                }
+            } catch (error) {
+                showAlert('Failed to load doctors', 'danger');
+            }
+        }
+
+        function displayDoctors(doctors) {
+            if (doctors.length === 0) {
+                document.getElementById('doctorsList').innerHTML = '<div class="alert alert-info">No doctors added yet. Click "Add Doctor" to get started.</div>';
+                return;
+            }
+
+            let html = '<div class="row">';
+            doctors.forEach(doctor => {
+                html += `
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h5 class="card-title">${doctor.full_name}</h5>
+                                        <p class="mb-1"><strong>Specialization:</strong> ${doctor.specialization}</p>
+                                        <p class="mb-1"><strong>Qualification:</strong> ${doctor.qualification || 'N/A'}</p>
+                                        <p class="mb-1"><strong>Experience:</strong> ${doctor.experience_years || 'N/A'} years</p>
+                                        <p class="mb-1"><strong>Fee:</strong> ₹${doctor.consultation_fee || 'N/A'}</p>
+                                        <p class="mb-1"><strong>Days:</strong> ${doctor.available_days || 'N/A'}</p>
+                                        <p class="mb-1"><strong>Time:</strong> ${doctor.available_time_from || 'N/A'} - ${doctor.available_time_to || 'N/A'}</p>
+                                        <p class="mb-1"><strong>Room:</strong> ${doctor.room_number || 'N/A'}</p>
+                                        ${doctor.is_available ? '<span class="badge bg-success">Available</span>' : '<span class="badge bg-secondary">Not Available</span>'}
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-sm btn-primary mb-2" onclick="editDoctor(${doctor.doctor_id})">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="deleteDoctor(${doctor.doctor_id})">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            document.getElementById('doctorsList').innerHTML = html;
+        }
+
+        // Edit Doctor
+        async function editDoctor(doctorId) {
+            try {
+                const response = await fetch(`${API_URL}/hospitals/doctors`, {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+
+                const data = await response.json();
+                const doctor = data.data.find(d => d.doctor_id === doctorId);
+
+                if (doctor) {
+                    document.getElementById('edit_doctor_id').value = doctor.doctor_id;
+                    document.getElementById('edit_full_name').value = doctor.full_name;
+                    document.getElementById('edit_specialization').value = doctor.specialization;
+                    document.getElementById('edit_qualification').value = doctor.qualification || '';
+                    document.getElementById('edit_experience_years').value = doctor.experience_years || '';
+                    document.getElementById('edit_phone').value = doctor.phone || '';
+                    document.getElementById('edit_email').value = doctor.email || '';
+                    document.getElementById('edit_consultation_fee').value = doctor.consultation_fee || '';
+                    document.getElementById('edit_room_number').value = doctor.room_number || '';
+                    document.getElementById('edit_available_days').value = doctor.available_days || '';
+                    document.getElementById('edit_available_time_from').value = doctor.available_time_from || '';
+                    document.getElementById('edit_available_time_to').value = doctor.available_time_to || '';
+                    document.getElementById('edit_is_available').value = doctor.is_available.toString();
+
+                    new bootstrap.Modal(document.getElementById('editDoctorModal')).show();
+                }
+            } catch (error) {
+                showAlert('Failed to load doctor details', 'danger');
+            }
+        }
+
+        // Update Doctor
+        document.getElementById('editDoctorForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const doctorId = document.getElementById('edit_doctor_id').value;
+            const formData = {
+                full_name: document.getElementById('edit_full_name').value,
+                specialization: document.getElementById('edit_specialization').value,
+                qualification: document.getElementById('edit_qualification').value,
+                experience_years: document.getElementById('edit_experience_years').value,
+                phone: document.getElementById('edit_phone').value,
+                email: document.getElementById('edit_email').value,
+                consultation_fee: document.getElementById('edit_consultation_fee').value,
+                available_days: document.getElementById('edit_available_days').value,
+                available_time_from: document.getElementById('edit_available_time_from').value,
+                available_time_to: document.getElementById('edit_available_time_to').value,
+                room_number: document.getElementById('edit_room_number').value,
+                is_available: document.getElementById('edit_is_available').value === 'true'
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/hospitals/doctors/${doctorId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Doctor updated successfully!', 'success');
+                    bootstrap.Modal.getInstance(document.getElementById('editDoctorModal')).hide();
+                    loadDoctors();
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Failed to update doctor', 'danger');
+            }
+        });
+
+        // Delete Doctor
+        async function deleteDoctor(doctorId) {
+            if (!confirm('Are you sure you want to delete this doctor?')) return;
+
+            try {
+                const response = await fetch(`${API_URL}/hospitals/doctors/${doctorId}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Doctor deleted successfully!', 'success');
+                    loadDoctors();
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Failed to delete doctor', 'danger');
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- ============================================
+8. pharmacy-login.html
+============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Login - MediConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-heartbeat"></i> MediConnect
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <h3 class="text-center mb-4"><i class="fas fa-pills"></i> Pharmacy Login</h3>
+                        <div id="alert-container"></div>
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-danger w-100">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Don't have an account? <a href="pharmacy-register.html">Register here</a></p>
+                            <a href="index.html">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch(`${API_URL}/pharmacies/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    localStorage.setItem('token', data.data.token);
+                    localStorage.setItem('userType', 'pharmacy');
+                    localStorage.setItem('userName', data.data.pharmacy.pharmacy_name);
+                    showAlert('Login successful! Redirecting...', 'success');
+                    setTimeout(() => window.location.href = 'pharmacy-dashboard.html', 1500);
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                show/auth.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch(`${API_URL}/users/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    localStorage.setItem('token', data.data.token);
+                    localStorage.setItem('userType', 'user');
+                    localStorage.setItem('userName', data.data.user.full_name);
+                    showAlert('Login successful! Redirecting...', 'success');
+                    setTimeout(() => window.location.href = 'user-dashboard.html', 1500);
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Login failed. Please try again.', 'danger');
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- ============================================
+3. user-register.html
+============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration - MediConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-heartbeat"></i> MediConnect
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center mt-5 mb-5">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <h3 class="text-center mb-4"><i class="fas fa-user-plus"></i> User Registration</h3>
+                        <div id="alert-container"></div>
+                        <form id="registerForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="full_name" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="full_name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="password" class="form-label">Password *</label>
+                                    <input type="password" class="form-control" id="password" required minlength="6">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="phone">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="date_of_birth" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control" id="date_of_birth">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-select" id="gender">
+                                        <option value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <textarea class="form-control" id="address" rows="2"></textarea>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="city" class="form-label">City</label>
+                                    <input type="text" class="form-control" id="city">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="state" class="form-label">State</label>
+                                    <input type="text" class="form-control" id="state">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="pincode" class="form-label">Pincode</label>
+                                    <input type="text" class="form-control" id="pincode">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-user-plus"></i> Register
+                            </button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Already have an account? <a href="user-login.html">Login here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = {
+                full_name: document.getElementById('full_name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                pincode: document.getElementById('pincode').value,
+                date_of_birth: document.getElementById('date_of_birth').value,
+                gender: document.getElementById('gender').value
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/users/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Registration successful! Redirecting to login...', 'success');
+                    setTimeout(() => window.location.href = 'user-login.html', 2000);
+                } else {
+                    showAlert(data.message, 'danger');
+                }
+            } catch (error) {
+                showAlert('Registration failed. Please try again.', 'danger');
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- ============================================
+4. user-dashboard.html
+============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - MediConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="user-dashboard.html">
+                <i class="fas fa-heartbeat"></i> MediConnect
+            </a>
+            <div class="ms-auto">
+                <span class="text-white me-3" id="userName"></span>
+                <button class="btn btn-outline-light btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="mb-4">User Dashboard</h2>
+
+        <!-- Search Tabs -->
+        <ul class="nav nav-tabs mb-4" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="doctors-tab" data-bs-toggle="tab" data-bs-target="#doctors" type="button">
+                    <i class="fas fa-user-md"></i> Search Doctors
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="medicines-tab" data-bs-toggle="tab" data-bs-target="#medicines" type="button">
+                    <i class="fas fa-pills"></i> Search Medicines
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Doctors Tab -->
+            <div class="tab-pane fade show active" id="doctors" role="tabpanel">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Search for Doctors</h5>
+                        <form id="searchDoctorsForm" class="row g-3">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="doctor_specialization" placeholder="Specialization (e.g., Cardiologist)">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="doctor_city" placeholder="City">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="doctor_hospital" placeholder="Hospital Name">
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search"></i> Search Doctors
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="doctorsResults"></div>
+            </div>
+
+            <!-- Medicines Tab -->
+            <div class="tab-pane fade" id="medicines" role="tabpanel">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Search for Medicines</h5>
+                        <form id="searchMedicinesForm" class="row g-3">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="medicine_name" placeholder="Medicine Name">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="medicine_city" placeholder="City">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="medicine_category" placeholder="Category">
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search"></i> Search Medicines
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div id="medicinesResults"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/user.js"></script>
+    <script>
+        checkAuth('user');
+        document.getElementById('userName').textContent = localStorage.getItem('userName') || 'User';
+
+        // Search Doctors
+        document.getElementById('searchDoctorsForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const specialization = document.getElementById('doctor_specialization').value;
+            const city = document.getElementById('doctor_city').value;
+            const hospital_name = document.getElementById('doctor_hospital').value;
+
+            const queryParams = new URLSearchParams();
+            if (specialization) queryParams.append('specialization', specialization);
+            if (city) queryParams.append('city', city);
+            if (hospital_name) queryParams.append('hospital_name', hospital_name);
+
+            try {
+                const response = await fetch(`${API_URL}/users/search/doctors?${queryParams}`, {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    displayDoctors(data.data);
+                } else {
+                    document.getElementById('doctorsResults').innerHTML = '<div class="alert alert-warning">No doctors found</div>';
+                }
+            } catch (error) {
+                document.getElementById('doctorsResults').innerHTML = '<div class="alert alert-danger">Search failed</div>';
+            }
+        });
+
+        // Search Medicines
+        document.getElementById('searchMedicinesForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const medicine_name = document.getElementById('medicine_name').value;
+            const city = document.getElementById('medicine_city').value;
+            const category = document.getElementById('medicine_category').value;
+
+            const queryParams = new URLSearchParams();
+            if (medicine_name) queryParams.append('medicine_name', medicine_name);
+            if (city) queryParams.append('city', city);
+            if (category) queryParams.append('category', category);
+
+            try {
+                const response = await fetch(`${API_URL}/users/search/medicines?${queryParams}`, {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    displayMedicines(data.data);
+                } else {
+                    document.getElementById('medicinesResults').innerHTML = '<div class="alert alert-warning">No medicines found</div>';
+                }
+            } catch (error) {
+                document.getElementById('medicinesResults').innerHTML = '<div class="alert alert-danger">Search failed</div>';
+            }
+        });
+
+        function displayDoctors(doctors) {
+            if (doctors.length === 0) {
+                document.getElementById('doctorsResults').innerHTML = '<div class="alert alert-info">No doctors found matching your criteria</div>';
+                return;
+            }
+
+            let html = '<div class="row">';
+            doctors.forEach(doctor => {
+                html += `
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-user-md text-primary"></i> ${doctor.full_name}</h5>
+                                <p class="mb-1"><strong>Specialization:</strong> ${doctor.specialization}</p>
+                                <p class="mb-1"><strong>Qualification:</strong> ${doctor.qualification || 'N/A'}</p>
+                                <p class="mb-1"><strong>Experience:</strong> ${doctor.experience_years || 'N/A'} years</p>
+                                <p class="mb-1"><strong>Hospital:</strong> ${doctor.hospital_name}</p>
+                                <p class="mb-1"><strong>Location:</strong> ${doctor.address}, ${doctor.city}</p>
+                                <p class="mb-1"><strong>Contact:</strong> ${doctor.hospital_phone}</p>
+                                <p class="mb-1"><strong>Consultation Fee:</strong> ₹${doctor.consultation_fee || 'N/A'}</p>
+                                <p class="mb-1"><strong>Available Days:</strong> ${doctor.available_days || 'N/A'}</p>
+                                <p class="mb-1"><strong>Timings:</strong> ${doctor.available_time_from || 'N/A'} - ${doctor.available_time_to || 'N/A'}</p>
+                                <span class="badge bg-success">Available</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            document.getElementById('doctorsResults').innerHTML = html;
+        }
+
+        function displayMedicines(medicines) {
+            if (medicines.length === 0) {
+                document.getElementById('medicinesResults').innerHTML = '<div class="alert alert-info">No medicines found matching your criteria</div>';
+                return;
+            }
+
+            let html = '<div class="row">';
+            medicines.forEach(medicine => {
+                html += `
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-pills text-danger"></i> ${medicine.medicine_name}</h5>
+                                <p class="mb-1"><strong>Generic Name:</strong> ${medicine.generic_name || 'N/A'}</p>
+                                <p class="mb-1"><strong>Manufacturer:</strong> ${medicine.manufacturer || 'N/A'}</p>
+                                <p class="mb-1"><strong>Category:</strong> ${medicine.category || 'N/A'}</p>
+                                <p class="mb-1"><strong>Form:</strong> ${medicine.dosage_form || 'N/A'}</p>
+                                <p class="mb-1"><strong>Strength:</strong> ${medicine.strength || 'N/A'}</p>
+                                <p class="mb-1"><strong>Price:</strong> ₹${medicine.price}</p>
+                                <p class="mb-1"><strong>Stock:</strong> ${medicine.stock_quantity} units</p>
+                                <p class="mb-1"><strong>Pharmacy:</strong> ${medicine.pharmacy_name}</p>
+                                <p class="mb-1"><strong>Location:</strong> ${medicine.address}, ${medicine.city}</p>
+                                <p class="mb-1"><strong>Contact:</strong> ${medicine.pharmacy_phone}</p>
+                                ${medicine.requires_prescription ? '<span class="badge bg-warning">Prescription Required</span>' : '<span class="badge bg-info">No Prescription</span>'}
+                                <span class="badge bg-success">In Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            document.getElementById('medicinesResults').innerHTML = html;
+        }
+    </script>
+</body>
+</html>
+
+<!-- ============================================
+5. hospital-login.html
+============================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Login - MediConnect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-heartbeat"></i> MediConnect
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <h3 class="text-center mb-4"><i class="fas fa-hospital"></i> Hospital Login</h3>
+                        <div id="alert-container"></div>
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">
+                                <i class="fas fa-sign-in-alt"></i> Login
+                            </button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <p>Don't have an account? <a href="hospital-register.html">Register here</a></p>
+                            <a href="index.html">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js
